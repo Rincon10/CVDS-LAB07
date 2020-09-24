@@ -56,14 +56,14 @@ public class JDBCExample {
             }
             System.out.println("-----------------------");
             
-            
+            /*
             int suCodigoECI = 2160176;
             registrarNuevoProducto(con, suCodigoECI, "Leonardo.", 99999999);
             suCodigoECI = 2159820;
-            registrarNuevoProducto(con, suCodigoECI, "Camilo.", 99999999);
+            registrarNuevoProducto(con, suCodigoECI, "Ivan Camilo Rincon", 99999999);
             con.commit();
-                        
-            
+            */
+            evidencia(con,2159820,2160176);
             con.close();
                                    
         } catch (ClassNotFoundException | SQLException ex) {
@@ -161,8 +161,21 @@ public class JDBCExample {
         return total;
     }
 
+    public static void evidencia(Connection con, int codigo1, int codigo2) throws SQLException {
 
-    
+        PreparedStatement productosPedido;
+        String select = "SELECT Pr.nombre " +
+                "FROM ORD_PRODUCTOS AS Pr " +
+                "WHERE Pr.codigo IN (?,?);";
+
+        productosPedido = con.prepareStatement(select);
+        productosPedido.setInt(1, codigo1);
+        productosPedido.setInt(2, codigo2);
+        ResultSet resultSet = productosPedido.executeQuery();
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString(1));
+        }
+    }
     
     
 }
