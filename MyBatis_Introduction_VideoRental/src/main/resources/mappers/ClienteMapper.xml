@@ -32,16 +32,12 @@
                 LEFT JOIN VI_TIPOITEM AS ti ON i.TIPOITEM_id=ti.id
     </select>
     <resultMap id="ClienteResult" type="Cliente" >
-       <id property="id" column="documento"/>
+        <id property="documento" column="documento"/>
         <result property="nombre" column="nombre" />
         <result property="telefono" column="telefono" />
         <result property="direccion" column="direccion" />
         <result property="email" column="email" />
         <result property="vetado" column="vetado" />
-        
-
+        <collection property="rentados" ofType="ItemRentado" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult"></collection>
     </resultMap>
-
-
-          	
 </mapper>
