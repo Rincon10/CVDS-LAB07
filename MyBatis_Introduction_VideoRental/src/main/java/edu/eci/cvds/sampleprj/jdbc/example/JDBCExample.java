@@ -93,7 +93,8 @@ public class JDBCExample {
      * Consultar los nombres de los productos asociados a un pedido
      * @param con la conexión JDBC
      * @param codigoPedido el código del pedido
-     * @return 
+     * @return List<String>, lista con el nombre de todos los productos del pedido codigoPedido
+     * @throws SQLException, si ocurre algun problema de SQL
      */
     public static List<String> nombresProductosPedido(Connection con, int codigoPedido) throws SQLException {
         List<String> np=new LinkedList<>();
@@ -123,18 +124,32 @@ public class JDBCExample {
     
     /**
      * Calcular el costo total de un pedido
-     * @param con
+     * @param con la conexión JDBC
      * @param codigoPedido código del pedido cuyo total se calculará
      * @return el costo total del pedido (suma de: cantidades*precios)
+     * @throws SQLException, si ocurre algun problema de SQL
      */
-    public static int valorTotalPedido(Connection con, int codigoPedido){
+    public static int valorTotalPedido(Connection con, int codigoPedido) throws SQLException {
         
         //Crear prepared statement
         //asignar parámetros
         //usar executeQuery
         //Sacar resultado del ResultSet
-        
-        return 0;
+        int  total =0;
+        PreparedStatement cost = null;
+
+        String select = "SELECT SUM(Po.precio*Op.cantidad) " +
+                "FROM ORD_PRODUCTOS Po " +
+                "INNER JOIN  ORD_DETALLE_PEDIDO Op " +
+                " ON Po.codigo = Op.producto_fk " +
+                "WHERE Op.pedido_fk = ? ;";
+        cost = con.prepareStatement( select );
+        cost.setInt(1, codigoPedido);
+        ResultSet resultSet = cost.executeQuery();
+        while ( resultSet.next() ){
+            total+= resultSet.getInt(1);
+        }
+        return total;
     }
     
 
