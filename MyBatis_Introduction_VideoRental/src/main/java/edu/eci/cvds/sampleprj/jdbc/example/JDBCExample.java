@@ -57,8 +57,10 @@ public class JDBCExample {
             System.out.println("-----------------------");
             
             
-            int suCodigoECI=20134423;
-            registrarNuevoProducto(con, suCodigoECI, "SU NOMBRE", 99999999);            
+            int suCodigoECI = 2160176;
+            registrarNuevoProducto(con, suCodigoECI, "Leonardo.", 99999999);
+            suCodigoECI = 2159820;
+            registrarNuevoProducto(con, suCodigoECI, "Camilo.", 99999999);
             con.commit();
                         
             
@@ -83,8 +85,15 @@ public class JDBCExample {
         //Crear preparedStatement
         //Asignar parámetros
         //usar 'execute'
+        PreparedStatement nuevoProducto;
 
-        
+        String insert = "INSERT INTO ORD_PRODUCTOS " +
+                "VALUES (?,?,?);";
+        nuevoProducto = con.prepareStatement(insert);
+        nuevoProducto.setInt(1,codigo);
+        nuevoProducto.setString(2,nombre);
+        nuevoProducto.setInt(3,precio);
+        nuevoProducto.executeUpdate();
         con.commit();
         
     }
@@ -151,7 +160,7 @@ public class JDBCExample {
         }
         return total;
     }
-    
+
 
     
     
