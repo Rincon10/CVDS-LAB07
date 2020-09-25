@@ -7,33 +7,33 @@
     <select id="consultarItems" parameterType="map" resultMap="ItemResult">
         SELECT
                 i.id as i_id,
-                i.nombre as i_nombre,
+                i.nombre,
                 i.descripcion,
                 i.fechalanzamiento ,
                 i.tarifaxdia ,
                 i.formatorenta ,
                 i.genero ,
 
-                ti.id as ti_id ,
+                ti.id AS ti_id ,
                 ti.descripcion
                 FROM VI_ITEMS AS i
                 LEFT JOIN VI_TIPOITEM AS ti ON i.TIPOITEM_id=ti.id;
     </select>
     <select id="consultarItem" resultMap="ItemResult" parameterType="map">
         SELECT
-                i.id as i_id,
-                i.nombre as i_nombre,
+                i.id AS i_id,
+                i.nombre,
                 i.descripcion,
                 i.fechalanzamiento ,
                 i.tarifaxdia ,
                 i.formatorenta ,
                 i.genero ,
 
-                ti.id as ti_id ,
+                ti.id AS ti_id ,
                 ti.descripcion
                 FROM VI_ITEMS AS i
                 LEFT JOIN VI_TIPOITEM AS ti ON i.TIPOITEM_id=ti.id
-                WHERE #{idItem} = i_id;
+                WHERE #{idItem} = i.id;
     </select>
 
     <insert id="insertarItem" parameterType="map">
@@ -41,7 +41,7 @@
         VALUES ( #{it.id},#{it.nombre},#{it.descripcion},#{it.fechaLanzamiento},#{it.tarifaxDia},#{it.formatoRenta},#{it.genero},#{item.tipo.id}) ;
     </insert>
     <resultMap id="ItemResult"  type="Item">
-        <id property="id" column="id"/>
+        <id property="id" column="i_id"/>
         <result property="nombre" column="nombre"/>
         <result property="descripcion" column="descripcion"/>
         <result property="fechaLanzamiento" column="fechaLanzamiento"/>

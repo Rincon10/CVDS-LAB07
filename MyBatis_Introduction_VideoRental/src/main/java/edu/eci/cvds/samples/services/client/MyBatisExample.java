@@ -21,11 +21,7 @@ package edu.eci.cvds.samples.services.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.sql.Date;
-
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import org.apache.ibatis.io.Resources;
@@ -73,18 +69,19 @@ public class MyBatisExample {
         //Crear el mapper y usarlo: 
         ClienteMapper cm =sqlss.getMapper(ClienteMapper.class);
         //cm...
-        System.out.println("--------------Consultando clientes -----------------------------------------------------------");
+        System.out.println("--------------Consultando clientes -----------------------------------------------------------\n");
         System.out.println(cm.consultarClientes());
-        System.out.println("-------------Insertando a -705 el ItemRentado numero 4-------------------------------------------------------------");
-        cm.agregarItemRentadoACliente(-705,4,Date.valueOf("2020-09-24"),Date.valueOf("2020-09-25"));//new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/25")
-        System.out.println("-------------------------Consultando al cliente -705 ------------------------------------------");
-        System.out.println(cm.consultarCliente(-705));
+        System.out.println("-------------Insertando a -703 el ItemRentado numero 0, con fechas especificas-------------------------------------------------------------\n");
+        //cm.agregarItemRentadoACliente(-703,4,Date.valueOf("2020-09-25"),Date.valueOf("2020-09-26"));//new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/25")
+        System.out.println("-------------------------Consultando al cliente -703 ------------------------------------------\n");
+        System.out.println(cm.consultarCliente(-703));
 
 
-        System.out.println("-------------------------Realizando operaciones con item-----------------------------------");
+        System.out.println("-------------------------Realizando operaciones con item-----------------------------------\n");
         ItemMapper im = sqlss.getMapper(ItemMapper.class);
-        System.out.println("");
-
+        System.out.println(im.consultarItems());
+        System.out.println("-------------------------Buscando el item de id 1 --------------------------------------\n");
+        System.out.println(im.consultarItem(1));
         sqlss.commit();
         
         
