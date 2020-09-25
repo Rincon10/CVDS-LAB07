@@ -13,18 +13,19 @@
                 c.email,
                 c.vetado,
 
-                ir.id ,
+                ir.id as ir_id,
                 ir.fechainiciorenta ,
                 ir.fechafinrenta ,
 
-                i.id ,
-                i.nombre ,
+                i.id as i_id,
+                i.nombre as i_nombre,
                 i.descripcion,
                 i.fechalanzamiento ,
                 i.tarifaxdia ,
                 i.formatorenta ,
                 i.genero ,
-                ti.id ,
+
+                ti.id as ti_id ,
                 ti.descripcion
                 FROM VI_CLIENTES AS c
                 LEFT JOIN VI_ITEMRENTADO AS ir ON c.documento=ir.CLIENTES_documento
@@ -38,6 +39,6 @@
         <result property="direccion" column="direccion" />
         <result property="email" column="email" />
         <result property="vetado" column="vetado" />
-        <collection property="rentados" ofType="ItemRentado" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult"></collection>
+        <collection property="rentados" ofType="ItemRentado" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult" columnPrefix="ir_"></collection>
     </resultMap>
 </mapper>
