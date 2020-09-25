@@ -12,7 +12,7 @@
         <result property="tarifaxDia" column="tarifaxDia"/>
         <result property="formatoRenta" column="formatoRenta"/>
         <result property="genero" column="genero"/>
-        <association property="tipo" javaType="TipoItem" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.TipoItemMapper.TipoItemResult"></association>
+        <association property="tipo" javaType="TipoItem" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.TipoItemMapper.TipoItemResult" columnPrefix="ti_"></association>
     </resultMap>
 
 
