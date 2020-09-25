@@ -24,9 +24,10 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -63,7 +64,7 @@ public class MyBatisExample {
      * @param args
      * @throws SQLException 
      */
-    public static void main(String args[]) throws SQLException, ParseException {
+    public static void main(String args[]) throws SQLException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
 
         SqlSession sqlss = sessionfact.openSession();
@@ -72,15 +73,17 @@ public class MyBatisExample {
         //Crear el mapper y usarlo: 
         ClienteMapper cm =sqlss.getMapper(ClienteMapper.class);
         //cm...
+        System.out.println("--------------Consultando clientes -----------------------------------------------------------");
         System.out.println(cm.consultarClientes());
-        System.out.println("-------------Insertando a 1478521 -------------------------------------------------------------");
-        cm.agregarItemRentadoACliente(1478521,4,(Date) new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/24"),(Date) new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/25"));
+        System.out.println("-------------Insertando a -705 el ItemRentado numero 4-------------------------------------------------------------");
+        cm.agregarItemRentadoACliente(-705,4,Date.valueOf("2020-09-24"),Date.valueOf("2020-09-25"));//new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/25")
+        System.out.println("-------------------------Consultando al cliente -705 ------------------------------------------");
+        System.out.println(cm.consultarCliente(-705));
 
 
-        System.out.println("-------------------------Consultando al usuario ------------------------------------------");
-        System.out.println(cm.consultarCliente(1478521));
-
-
+        System.out.println("-------------------------Realizando operaciones con item-----------------------------------");
+        ItemMapper im = sqlss.getMapper(ItemMapper.class);
+        System.out.println("");
 
         sqlss.commit();
         

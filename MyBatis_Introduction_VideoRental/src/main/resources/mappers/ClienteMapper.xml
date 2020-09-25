@@ -34,7 +34,8 @@
                 WHERE #{idcli} =  c.documento ;
     </select>
     <insert id="agregarItemRentadoACliente" parameterType="map" >
-        INSERT INTO VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta) VALUES(#{idcli},#{idit},#{fechaini},#{fechafin});
+        INSERT INTO VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta)
+         VALUES(#{idcli},#{idit},#{fechaini},#{fechafin});
     </insert>
     <select id="consultarClientes" parameterType="map" resultMap="ClienteResult">
         SELECT

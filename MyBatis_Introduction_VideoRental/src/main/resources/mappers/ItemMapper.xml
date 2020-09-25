@@ -35,6 +35,11 @@
                 LEFT JOIN VI_TIPOITEM AS ti ON i.TIPOITEM_id=ti.id
                 WHERE #{idItem} = i_id;
     </select>
+
+    <insert id="insertarItem" parameterType="map">
+        INSERT INTO VI_ITEMS
+        VALUES ( #{it.id},#{it.nombre},#{it.descripcion},#{it.fechaLanzamiento},#{it.tarifaxDia},#{it.formatoRenta},#{it.genero},#{item.tipo.id}) ;
+    </insert>
     <resultMap id="ItemResult"  type="Item">
         <id property="id" column="id"/>
         <result property="nombre" column="nombre"/>
