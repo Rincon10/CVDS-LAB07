@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import org.apache.ibatis.io.Resources;
@@ -73,7 +74,7 @@ public class MyBatisExample {
         //cm...
         System.out.println(cm.consultarClientes());
         System.out.println("-------------Insertando a 1478521 -------------------------------------------------------------");
-        cm.agregarItemRentadoACliente(1478521,3,new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/24"),new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/25"));
+        cm.agregarItemRentadoACliente(1478521,4,(Date) new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/24"),(Date) new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/25"));
 
 
         System.out.println("-------------------------Consultando al usuario ------------------------------------------");

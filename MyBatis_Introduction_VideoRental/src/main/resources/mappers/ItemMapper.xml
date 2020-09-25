@@ -4,6 +4,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper">
+    <select id="consultarItems" parameterType="map" resultMap="ItemResult">
+        SELECT
+                i.id as i_id,
+                i.nombre as i_nombre,
+                i.descripcion,
+                i.fechalanzamiento ,
+                i.tarifaxdia ,
+                i.formatorenta ,
+                i.genero ,
+
+                ti.id as ti_id ,
+                ti.descripcion
+                FROM VI_ITEMS AS i
+                LEFT JOIN VI_TIPOITEM AS ti ON i.TIPOITEM_id=ti.id;
+    </select>
+    <select id="consultarItem" resultMap="ItemResult" parameterType="map">
+        SELECT
+                i.id as i_id,
+                i.nombre as i_nombre,
+                i.descripcion,
+                i.fechalanzamiento ,
+                i.tarifaxdia ,
+                i.formatorenta ,
+                i.genero ,
+
+                ti.id as ti_id ,
+                ti.descripcion
+                FROM VI_ITEMS AS i
+                LEFT JOIN VI_TIPOITEM AS ti ON i.TIPOITEM_id=ti.id
+                WHERE #{idItem} = i_id;
+    </select>
     <resultMap id="ItemResult"  type="Item">
         <id property="id" column="id"/>
         <result property="nombre" column="nombre"/>
