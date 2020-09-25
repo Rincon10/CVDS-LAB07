@@ -24,6 +24,8 @@ import java.sql.SQLException;
 import java.sql.Date;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
+import edu.eci.cvds.samples.entities.Item;
+import edu.eci.cvds.samples.entities.TipoItem;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -71,17 +73,26 @@ public class MyBatisExample {
         //cm...
         System.out.println("--------------Consultando clientes -----------------------------------------------------------\n");
         System.out.println(cm.consultarClientes());
-        System.out.println("-------------Insertando a -703 el ItemRentado numero 0, con fechas especificas-------------------------------------------------------------\n");
-        //cm.agregarItemRentadoACliente(-703,4,Date.valueOf("2020-09-25"),Date.valueOf("2020-09-26"));//new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/25")
-        System.out.println("-------------------------Consultando al cliente -703 ------------------------------------------\n");
-        System.out.println(cm.consultarCliente(-703));
+        System.out.println("-------------Insertando a -700 el ItemRentado numero 0, con fechas especificas-------------------------------------------------------------\n");
+        //cm.agregarItemRentadoACliente(-700,4,Date.valueOf("2020-09-25"),Date.valueOf("2020-09-26"));//new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/25")
+        System.out.println("-------------------------Consultando al cliente -700 ------------------------------------------\n");
+        System.out.println(cm.consultarCliente(-700));
 
 
         System.out.println("-------------------------Realizando operaciones con item-----------------------------------\n");
+        System.out.println("-------------------------Consultando items-----------------------------------\n");
         ItemMapper im = sqlss.getMapper(ItemMapper.class);
         System.out.println(im.consultarItems());
         System.out.println("-------------------------Buscando el item de id 1 --------------------------------------\n");
         System.out.println(im.consultarItem(1));
+
+        System.out.println("-------------------------Insertando un item con id 12345--------------------------------------------\n");
+        /**
+        Item(TipoItem tipo, int id, String nombre, String descripcion, Date fechaLanzamiento, long tarifaxDia, String formatoRenta, String genero)
+        im.insertarItem( new Item( new TipoItem(2,"Accion"),12345,"funar o ser funado CR","descripcion",Date.valueOf("2020-09-25"),2313,"formato renta","accion" ));
+         */
+        System.out.println("---------------------Consultando el item añadido------------------------------------------\n");
+        System.out.println(im.consultarItem(12345));
         sqlss.commit();
         
         
