@@ -21,6 +21,9 @@ package edu.eci.cvds.samples.services.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import org.apache.ibatis.io.Resources;
@@ -59,7 +62,7 @@ public class MyBatisExample {
      * @param args
      * @throws SQLException 
      */
-    public static void main(String args[]) throws SQLException {
+    public static void main(String args[]) throws SQLException, ParseException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
 
         SqlSession sqlss = sessionfact.openSession();
@@ -69,8 +72,15 @@ public class MyBatisExample {
         ClienteMapper cm =sqlss.getMapper(ClienteMapper.class);
         //cm...
         System.out.println(cm.consultarClientes());
-        
-        
+        System.out.println("-------------Insertando a 1478521 -------------------------------------------------------------");
+        cm.agregarItemRentadoACliente(1478521,3,new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/24"),new SimpleDateFormat("yyyy/MM/dd").parse("2020/09/25"));
+
+
+        System.out.println("-------------------------Consultando al usuario ------------------------------------------");
+        System.out.println(cm.consultarCliente(1478521));
+
+
+
         sqlss.commit();
         
         
