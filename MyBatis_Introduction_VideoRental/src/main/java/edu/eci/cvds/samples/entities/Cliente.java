@@ -88,13 +88,9 @@ public class Cliente implements Serializable{
         return vetado;
     }
 
-    public void setVetado(boolean betado) {
-        this.vetado = betado;
-    }
+    public void setVetado(boolean betado) { this.vetado = betado; }
 
-    public ArrayList<ItemRentado> getRentados() {
-        return rentados;
-    }
+    public ArrayList<ItemRentado> getRentados() { return rentados; }
 
     public void setRentados(ArrayList<ItemRentado> Rentados) {
         this.rentados = Rentados;

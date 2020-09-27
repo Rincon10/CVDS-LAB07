@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper">
+
     <resultMap id="ItemRentadoResult" type="ItemRentado" >
         <id property="id" column="id"/>
         <result property="fechainiciorenta" column="fechainiciorenta"/>

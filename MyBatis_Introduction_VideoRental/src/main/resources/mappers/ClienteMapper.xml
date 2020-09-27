@@ -74,4 +74,5 @@
         <result property="vetado" column="vetado" />
         <collection property="rentados" ofType="ItemRentado" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult" columnPrefix="ir_"></collection>
     </resultMap>
+
 </mapper>
