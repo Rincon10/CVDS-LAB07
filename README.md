@@ -35,6 +35,5 @@
 * [Repositorio Original](https://github.com/PDSW-ECI/MyBatis_Introduction_VideoRental)
 
 ### __Autores__
-
 * Camilo Rincón [Rincon10](https://github.com/Rincon10)
 * Leonardo Galeano [Ersocaut](https://github.com/Ersocaut)
